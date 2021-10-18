@@ -243,7 +243,7 @@ public final class Instagram : NSObject, ObservableObject, ASWebAuthenticationPr
             return
         }
         if config == nil { return }
-        if force == false && automatedFetcher.shouldFetch && dataSubject.value.isEmpty == false {
+        if force == false && automatedFetcher.shouldFetch == false && dataSubject.value.isEmpty == false {
             return
         }
         automatedFetcher.started()
