@@ -211,6 +211,8 @@ public final class Instagram : NSObject, ObservableObject, ASWebAuthenticationPr
     private var session:ASWebAuthenticationSession?
     /// Cancellable subscriptions
     private var cancellables = Set<AnyCancellable>()
+    /// Cancellable subscriptions
+    private var automatedfFetcherCancellable:AnyCancellable
     /// Current state, used when requesting an accesstoken
     private var state = UUID().uuidString
     /// Internal data subject used when publishing new media
@@ -280,10 +282,10 @@ public final class Instagram : NSObject, ObservableObject, ASWebAuthenticationPr
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         self.latest = dataSubject.eraseToAnyPublisher()
         self.automatedFetcher = AutomatedFetcher<[Media]?>.init(dataSubject, isOn: fetchAutomatically, timeInterval: fetchInterval)
-        super.init()
-        self.automatedFetcher.triggered.sink { [weak self] in
+        automatedfFetcherCancellable = self.automatedFetcher.triggered.sink { [weak self] in
             self?.fetch()
-        }.store(in: &cancellables)
+        }
+        super.init()
         if fetchAutomatically {
             fetch()
         }
