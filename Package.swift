@@ -12,7 +12,7 @@ let package = Package(
             targets: ["Instagram"]),
     ],
     dependencies: [
-        .package(name: "AutomatedFetcher", url: "https://github.com/helsingborg-stad/spm-automated-fetcher", from: "0.1.3"),
+        .package(name: "AutomatedFetcher", url: "https://github.com/helsingborg-stad/spm-automated-fetcher", from: "0.1.4"),
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess", from: "4.2.2")
     ],
     targets: [
