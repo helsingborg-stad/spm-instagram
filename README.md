@@ -1,5 +1,8 @@
 # Instagram
+## DEPRECATED
+Package will not recieve any updates, please use the Instagram library in https://github.com/helsingborg-stad/spm-daisy instead.
 
+## About
 Instagram API implementation.
 
 ## Usage
